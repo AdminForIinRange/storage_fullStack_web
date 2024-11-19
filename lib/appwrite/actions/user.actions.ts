@@ -59,6 +59,10 @@ export const createAccount = async ({
 
   if (!existingUser) {
     const { databases } = await createAdminClient();
+     // Create an admin client to access database services.
+  // Note: We are not creating an "admin user." Instead, we are performing
+  // system-level administrative commands, like creating users, finding users, etc.
+  // This is about executing system-level operations, not managing an admin user account.
     await databases.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
