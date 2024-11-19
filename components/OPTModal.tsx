@@ -36,16 +36,17 @@ const OtpModal = ({
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
+
     console.log({ accountId, password });
 
     try {
       const sessionId = await verifySecret({ accountId, password });
+
       console.log({ sessionId });
-      if (sessionId) {
-        router.push(`/`);
-      }
+
+      if (sessionId) router.push("/");
     } catch (error) {
-      console.log("Failed to verify secret", error);
+      console.log("Failed to verify OTP", error);
     }
 
     setIsLoading(false);
@@ -67,14 +68,15 @@ const OtpModal = ({
               width={20}
               height={20}
               onClick={() => setIsOpen(false)}
-              className="otp-close-button "
+              className="otp-close-button"
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
             We&apos;ve sent a code to{" "}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
-        </AlertDialogHeader>{" "}
+        </AlertDialogHeader>
+
         <InputOTP maxLength={6} value={password} onChange={setPassword}>
           <InputOTPGroup className="shad-otp">
             <InputOTPSlot index={0} className="shad-otp-slot" />
@@ -85,6 +87,7 @@ const OtpModal = ({
             <InputOTPSlot index={5} className="shad-otp-slot" />
           </InputOTPGroup>
         </InputOTP>
+
         <AlertDialogFooter>
           <div className="flex w-full flex-col gap-4">
             <AlertDialogAction
