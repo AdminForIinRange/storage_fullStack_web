@@ -88,7 +88,7 @@ const OtpModal = ({
         <AlertDialogFooter>
           <div className="flex w-full flex-col gap-4">
             <AlertDialogAction
-              onClick={handleResendOtp}
+              onClick={handleSubmit}
               className="shad-submit-btn h-12"
               type="button"
             >
