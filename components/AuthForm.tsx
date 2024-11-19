@@ -20,17 +20,38 @@ import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
+  
 });
-type AuthFormProps = "sign-in" | "sign-up";
-function AuthForm({ type }: { type: AuthFormProps }) {
+
+
+
+type FromType = "sign-in" | "sign-up";
+
+
+
+const authFormSchema = (formType: FromType ) => {
+    return z.object({
+        
+        email: z.string().email(),
+   
+        fullName: formType === "sign-up" ? z.string().min(2).max(50) : z.string().optional(),
+
+    })
+
+
+}
+
+function AuthForm({ type }: { type: FromType }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [accountId, setAccountId] = useState(null);
 
+  const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      fullName: "",
+      email: "",
     },
   });
 
