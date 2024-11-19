@@ -41,6 +41,8 @@ function AuthForm({ type }: { type: FormType }) {
 
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
+    // In the parent component AuthForm, the useForm hook manages the form state, including the email field.
+    // form.getValues("email") is used to get the current value of the email field, which is part of the form's internal state.
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
@@ -163,7 +165,16 @@ function AuthForm({ type }: { type: FormType }) {
       </Form>
 
       {accountId && (
-        <OtpModal email={form.getValues("email")} accountId={accountId} />
+
+        // the reason why this elemnet can accuse the from is beacuse of a built in react hook called useForm, 
+        // look up, the code is in const form = useForm<z.infer<typeof formSchema>>({ 
+        // pretty cool
+        <OtpModal email={form.getValues("email")} accountId={accountId} /> 
+
+        // If accountId is valid, render the OTP modal and pass in the email and
+        // accountId as props. Within the modal, verify it via a server action using
+        // the function called verifySecret. If verifySecret returns valid, use the router
+        // to push the user to the index (basically the home page).
       )}
     </>
   );
