@@ -99,3 +99,21 @@ export const verifySecret = async ({
     handleError(error, "Failed to verify secret");
   }
 };
+
+export const signInUser = async ({email} : {email: string}) => {
+  try {
+    const existingUser = await getUserByEmail(email);
+
+    if (existingUser){
+      await sendEmailOTP({email})
+      return parseStringify({accountId: existingUser.accountId})
+    }
+
+    return parseStringify({ accountId: null, error: "User not found" });
+
+
+  } catch (error) {
+    handleError(error, "failed to sign in user");
+    
+  }
+}
