@@ -63,12 +63,11 @@ function AuthForm({ type }: { type: FormType }) {
       setAccountId(user.accountId);
     } catch {
       setErrorMessage("Failed to create account. Please try again.");
-    } finally { // Code that always runs, no matter what happens
+    } finally {
+      // Code that always runs, no matter what happens
       setIsLoading(false);
     }
   };
-
- 
 
   return (
     <>
@@ -130,7 +129,6 @@ function AuthForm({ type }: { type: FormType }) {
           <Button
             type="submit"
             className="form-submit-button"
-
             disabled={isLoading}
           >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
@@ -164,8 +162,9 @@ function AuthForm({ type }: { type: FormType }) {
         </form>
       </Form>
 
+      {accountId && (
         <OtpModal email={form.getValues("email")} accountId={accountId} />
-
+      )}
     </>
   );
 }
