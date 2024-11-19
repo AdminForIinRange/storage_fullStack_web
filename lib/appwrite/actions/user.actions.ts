@@ -26,30 +26,24 @@ const getUserByEmail = async (email: string) => {
   return result.total > 0 ? result.documents[0] : null; // Return the first document if any, otherwise null
 };
 
-
-
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
   throw error;
-}
+};
 
-export const sendEmailOTP = async ({email} : {email: string}) => {
+export const sendEmailOTP = async ({ email }: { email: string }) => {
+  const { account } = await createAdminClient();
 
-    const {account} =  await createAdminClient();
+  try {
+    // Generate a unique email token for account verification
+    const emailToken = await account.createEmailToken(ID.unique(), email);
 
-    try {
-        // Generate a unique email token for account verification
-        const emailToken = await account.createEmailToken(ID.unique(), email);
-
-        // Return the user ID associated with the created email token
-        return emailToken.userId;
-    } catch (error) {
-        handleError(error, "Failed to send email OTP");
-    }
-
-    
-}
-
+    // Return the user ID associated with the created email token
+    return emailToken.userId;
+  } catch (error) {
+    handleError(error, "Failed to send email OTP");
+  }
+};
 
 export const createAccount = async ({
   fullName,
@@ -79,5 +73,3 @@ export const createAccount = async ({
   }
   return parseStringify({ accountId });
 };
-
-
