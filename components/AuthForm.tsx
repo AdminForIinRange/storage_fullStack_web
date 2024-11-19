@@ -19,6 +19,7 @@ import Link from "next/link";
 import { createAccount } from "@/lib/actions/user.actions";
 
 import { useState } from "react";
+import OtpModal from "./OPTModal";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -163,9 +164,8 @@ function AuthForm({ type }: { type: FormType }) {
         </form>
       </Form>
 
-      {/* {accountId && (
-        // <OtpModal email={form.getValues("email")} accountId={accountId} />
-      )} */}
+        <OtpModal email={form.getValues("email")} accountId={accountId} />
+
     </>
   );
 }
