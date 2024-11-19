@@ -62,10 +62,18 @@ function AuthForm({ type }: { type: FormType }) {
       setAccountId(user.accountId);
     } catch {
       setErrorMessage("Failed to create account. Please try again.");
-    } finally {
+    } finally { // Code that always runs, no matter what happens
       setIsLoading(false);
     }
   };
+
+  // try {
+  //   // Code that may throw an error
+  // } catch (error) {
+  //   // Code to handle errors
+  // } finally {
+  //   // Code that always runs, no matter what happens
+  // }
 
   return (
     <>
