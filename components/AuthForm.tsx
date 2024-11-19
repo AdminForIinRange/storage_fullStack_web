@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
-import { createAccount, signInUser } from "@/lib/actions/user.actions";
+import { createAccount } from "@/lib/actions/user.actions";
 
 import { useState } from "react";
 
@@ -49,7 +49,7 @@ function AuthForm({ type }: { type: FormType }) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-
+    setErrorMessage("");
     try {
       const user =
         type === "sign-up" // If `type` is "sign-up"
@@ -67,13 +67,7 @@ function AuthForm({ type }: { type: FormType }) {
     }
   };
 
-  // try {
-  //   // Code that may throw an error
-  // } catch (error) {
-  //   // Code to handle errors
-  // } finally {
-  //   // Code that always runs, no matter what happens
-  // }
+ 
 
   return (
     <>
@@ -135,7 +129,7 @@ function AuthForm({ type }: { type: FormType }) {
           <Button
             type="submit"
             className="form-submit-button"
-            disabled={form.formState.isSubmitting}
+
             disabled={isLoading}
           >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
@@ -169,9 +163,9 @@ function AuthForm({ type }: { type: FormType }) {
         </form>
       </Form>
 
-      {accountId && (
-        <OtpModal email={form.getValues("email")} accountId={accountId} />
-      )}
+      {/* {accountId && (
+        // <OtpModal email={form.getValues("email")} accountId={accountId} />
+      )} */}
     </>
   );
 }
