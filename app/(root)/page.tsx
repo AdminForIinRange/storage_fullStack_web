@@ -2,7 +2,9 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>1:46:52 / 5:19:06
+    
+    </div>
   )
 }
 
