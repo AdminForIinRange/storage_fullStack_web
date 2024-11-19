@@ -52,12 +52,12 @@ function AuthForm({ type }: { type: FormType }) {
 
     try {
       const user =
-        type === "sign-up"
+        type === "sign-up" // If `type` is "sign-up"
           ? await createAccount({
-              fullName: values.fullName || "",
-              email: values.email,
-            })
-          : await signInUser({ email: values.email });
+              fullName: values.fullName || "", // Use fullName or an empty string if not provided
+              email: values.email, // User's email
+            }) // Call `createAccount` and wait for its result
+          : await signInUser({ email: values.email }); // Otherwise, call `signInUser` and wait for its result
 
       setAccountId(user.accountId);
     } catch {
