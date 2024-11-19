@@ -10,10 +10,10 @@ import "../globals.css";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex h-screen">
-      <Sidebar />
+      <Sidebar fullName="" avatar="" email="" />
       <section className="flex h-full flex-1 flex-col">
-        <MobileNavigation />
-        <Header />
+        <MobileNavigation accountId="" fullName="" avatar="" email="" userId=""  />
+        <Header accountId="" userId="" />
         <div className="main-content">{children}</div>
       </section>
       {/* <Toaster /> */}
