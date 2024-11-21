@@ -16,7 +16,7 @@ const Card = ({ file }: { file: Models.Document }) => {
           className="!size-20"
           imageClassName="!size-11"
         />
-
+  
         <div className="flex flex-col items-end justify-between">
           <ActionDropdown file={file} />
           <p className="body-1">{convertFileSize(file.size)}</p>
