@@ -21,7 +21,7 @@ const Header = ({
           action={async () => {
             "use server";
 
-            await signOutUser();
+            // await signOutUser();
           }}
         >
           <Button type="submit" className="sign-out-button">
