@@ -24,28 +24,18 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   // i had an issue with this before becuse i forgot to make it async and
   // wondering why the function always went to catch block wouthout any attemping try block
 
-  const currentUser = await getCurrentUser(); 
-  
+  const currentUser = await getCurrentUser();
+
   if (!currentUser) {
     return redirect("/sign-in");
   }
 
-  
-
-
-
   return (
     <main className="flex h-screen">
-      <Sidebar  {...currentUser} /> 
-     {/* so the currentUser holds fullname, avatar, email, so by spreding it we can access all the values Without teh need of duplicating them */}
+      <Sidebar {...currentUser} />
+      {/* so the currentUser holds fullname, avatar, email, so by spreding it we can access all the values Without teh need of duplicating them */}
       <section className="flex h-full flex-1 flex-col">
-        <MobileNavigation
-          accountId=""
-          fullName=""
-          avatar=""
-          email=""
-          userId=""
-        />
+        <MobileNavigation {...currentUser} />
         <Header accountId="" userId="" />
         <div className="main-content">{children}</div>
       </section>
