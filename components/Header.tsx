@@ -18,7 +18,7 @@ const Header = ({
     <header className="header">
       <Search />
       <div className="header-wrapper">
-        <FileUploader />
+        <FileUploader ownerId={userId} accountId={accountId} />
         {/* This form is used to sign out the user. 
       When the form is submitted, it will call the `signOutUser` 
         function which will delete the session and redirect the user to the sign 

@@ -28,7 +28,7 @@ import { MAX_FILE_SIZE } from "@/constants";
 import { useToast } from "@/hooks/use-toast";
 // Custom hook to display toast notifications (feedback messages).
 
-// import { uploadFile } from "@/lib/actions/file.actions";
+import { uploadFile } from "@/lib/actions/file.actions";
 // (Commented out): A function for uploading files to the server.
 
 import { usePathname } from "next/navigation";
@@ -69,15 +69,15 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
         }
 
         // (Commented out): Upload the file to the server.
-        // return uploadFile({ file, ownerId, accountId, path }).then(
-        //   (uploadedFile) => {
-        //     if (uploadedFile) {
-        //       setFiles((prevFiles) =>
-        //         prevFiles.filter((f) => f.name !== file.name),
-        //       );
-        //     }
-        //   },
-        // );
+        return uploadFile({ file, ownerId, accountId, path }).then(
+          (uploadedFile) => {
+            if (uploadedFile) {
+              setFiles((prevFiles) =>
+                prevFiles.filter((f) => f.name !== file.name),
+              );
+            }
+          },
+        );
       });
 
       await Promise.all(uploadPromises); // Wait for all upload promises to complete.
