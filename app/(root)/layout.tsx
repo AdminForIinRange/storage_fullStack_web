@@ -17,16 +17,27 @@ import { getCurrentUser } from "@/lib/actions/user.actions";
 // import { Toaster } from "@/components/ui/toaster";
 
 import "../globals.css";
+import { redirect } from "next/navigation";
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   // if your using await, for any level/type of
   // DB server acation call, please turn it into the function async
   // i had an issue with this before becuse i forgot to make it async and
   // wondering why the function always went to catch block wouthout any attemping try block
 
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser(); 
+  
+  if (!currentUser) {
+    return redirect("/sign-in");
+  }
+
+  
+
+
+
   return (
     <main className="flex h-screen">
-      <Sidebar fullName="" avatar="" email="" />
+      <Sidebar  {...currentUser} /> 
+     {/* so the currentUser holds fullname, avatar, email, so by spreding it we can access all the values Without teh need of duplicating them */}
       <section className="flex h-full flex-1 flex-col">
         <MobileNavigation
           accountId=""
