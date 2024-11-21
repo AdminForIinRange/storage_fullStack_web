@@ -34,12 +34,18 @@ const authFormSchema = (formType: FormType) => {
   });
 };
 
+
+
 function AuthForm({ type }: { type: FormType }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [accountId, setAccountId] = useState(null);
 
   const formSchema = authFormSchema(type);
+
+
+// z.infer<typeof formSchema> is a utility from Zod that generates a TypeScript type based on a Zod schema. In your code, it is used to automatically infer the shape of the form data (like email and fullName) from the authFormSchema and ensure type safety when working with the form data in the useForm hook. This eliminates the need to manually define the types for the form.
+
   const form = useForm<z.infer<typeof formSchema>>({
     // In the parent component AuthForm, the useForm hook manages the form state, including the email field.
     // form.getValues("email") is used to get the current value of the email field, which is part of the form's internal state.
