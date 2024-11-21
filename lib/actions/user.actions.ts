@@ -114,3 +114,25 @@ export const signInUser = async ({ email }: { email: string }) => {
     handleError(error, "failed to sign in user");
   }
 };
+
+export const getCurrentUser = async () => {
+  try {
+    // databases and account are fuctions that are retuned by the
+    // createSessionClient function
+
+    const { databases, account } = await createSessionClient();
+    const result = await account.get();
+
+    const user = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+      [Query.equal("accountId", [result.$id])],
+    );
+
+    if (user.total > 0) return null;
+
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
