@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import { avatarPlaceholderUrl } from "@/constants";
 import { redirect } from "next/navigation";
 
+
 // This function retrieves a user document by email from the database using the Appwrite client.
 // It returns the user document if found, otherwise it returns null.
 const getUserByEmail = async (email: string) => {
@@ -118,7 +119,7 @@ export const signInUser = async ({ email }: { email: string }) => {
 export const getCurrentUser = async () => {
   try {
     const { databases, account } = await createSessionClient();
-   // databases and account are fuctions that are retuned by the
+    // databases and account are fuctions that are retuned by the
     // createSessionClient function
 
     const result = await account.get();
@@ -134,5 +135,18 @@ export const getCurrentUser = async () => {
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const signOutUser = async () => {
+  const { account } = await createSessionClient();
+
+  try {
+    await account.deleteSession("current");
+    (await cookies()).delete("appwrite-session");
+  } catch (error) {
+    handleError(error, "Failed to sign out user");
+  } finally {
+    redirect("/sign-in");
   }
 };
