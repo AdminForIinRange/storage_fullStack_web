@@ -34,8 +34,6 @@ const authFormSchema = (formType: FormType) => {
   });
 };
 
-
-
 function AuthForm({ type }: { type: FormType }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,8 +41,7 @@ function AuthForm({ type }: { type: FormType }) {
 
   const formSchema = authFormSchema(type);
 
-
-// z.infer<typeof formSchema> is a utility from Zod that generates a TypeScript type based on a Zod schema. In your code, it is used to automatically infer the shape of the form data (like email and fullName) from the authFormSchema and ensure type safety when working with the form data in the useForm hook. This eliminates the need to manually define the types for the form.
+  // z.infer<typeof formSchema> is a utility from Zod that generates a TypeScript type based on a Zod schema. In your code, it is used to automatically infer the shape of the form data (like email and fullName) from the authFormSchema and ensure type safety when working with the form data in the useForm hook. This eliminates the need to manually define the types for the form.
 
   const form = useForm<z.infer<typeof formSchema>>({
     // In the parent component AuthForm, the useForm hook manages the form state, including the email field.
@@ -171,11 +168,10 @@ function AuthForm({ type }: { type: FormType }) {
       </Form>
 
       {accountId && (
-
-        // the reason why this elemnet can accuse the from is beacuse of a built in react hook called useForm, 
-        // look up, the code is in const form = useForm<z.infer<typeof formSchema>>({ 
+        // the reason why this elemnet can accuse the from is beacuse of a built in react hook called useForm,
+        // look up, the code is in const form = useForm<z.infer<typeof formSchema>>({
         // pretty cool
-        <OtpModal email={form.getValues("email")} accountId={accountId} /> 
+        <OtpModal email={form.getValues("email")} accountId={accountId} />
 
         // If accountId is valid, render the OTP modal and pass in the email and
         // accountId as props. Within the modal, verify it via a server action using

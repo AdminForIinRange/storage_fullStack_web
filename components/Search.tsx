@@ -12,7 +12,7 @@ import { Models } from "node-appwrite";
 import { useDebounce } from "use-debounce";
 
 const Search = () => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="search">
@@ -24,44 +24,44 @@ const Search = () => {
           height={24}
         />
         <Input
-        //   value={query}
+          //   value={query}
           placeholder="Search..."
           className="search-input"
-        //   onChange={(e) => setQuery(e.target.value)}
+          //   onChange={(e) => setQuery(e.target.value)}
         />
 
         {open && (
           <ul className="search-result">
             {/* {results.length > 0 ? ( */}
-              {/* results.map((file) => ( */}
-                <li
-                  className="flex items-center justify-between"
-                //   key={file.$id}
-                //   onClick={() => handleClickItem(file)}
-                >
-                  <div className="flex cursor-pointer items-center gap-4">
-                    {/* <Thumbnail
+            {/* results.map((file) => ( */}
+            <li
+              className="flex items-center justify-between"
+              //   key={file.$id}
+              //   onClick={() => handleClickItem(file)}
+            >
+              <div className="flex cursor-pointer items-center gap-4">
+                {/* <Thumbnail
                       type={file.type}
                       extension={file.extension}
                       url={file.url}
                       className="size-9 min-w-9"
                     /> */}
-                    <p className="subtitle-2 line-clamp-1 text-light-100">
-                      {/* {file.name} */}
-                    </p>
-                  </div>
+                <p className="subtitle-2 line-clamp-1 text-light-100">
+                  {/* {file.name} */}
+                </p>
+              </div>
 
-                  {/* <FormattedDateTime
+              {/* <FormattedDateTime
                     date={file.$createdAt}
                     className="caption line-clamp-1 text-light-200"
                   /> */}
-                </li>
-              {/* )) */}
+            </li>
+            {/* )) */}
             {/* ) : ( */}
-              <p className="empty-result">No files found</p>
+            <p className="empty-result">No files found</p>
             {/* )} */}
           </ul>
-       )} 
+        )}
       </div>
     </div>
   );

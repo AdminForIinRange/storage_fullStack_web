@@ -8,7 +8,6 @@ import { cookies } from "next/headers";
 import { avatarPlaceholderUrl } from "@/constants";
 import { redirect } from "next/navigation";
 
-
 // This function retrieves a user document by email from the database using the Appwrite client.
 // It returns the user document if found, otherwise it returns null.
 const getUserByEmail = async (email: string) => {

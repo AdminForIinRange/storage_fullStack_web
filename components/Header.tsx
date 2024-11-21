@@ -13,7 +13,7 @@ const Header = ({
 }: {
   userId: string;
   accountId: string;
-}) => { 
+}) => {
   return (
     <header className="header">
       <Search />
@@ -26,10 +26,11 @@ const Header = ({
         this code on the server, which is necessary because the `signOutUser` 
         function is not available on the client. */}
         <form
-          action={async () => { // react 19, form attribute allows us to use async functions as handlers as if they
+          action={async () => {
+            // react 19, form attribute allows us to use async functions as handlers as if they
             // were client side functions
-            
-             // we coudl also just use an 
+
+            // we coudl also just use an
             // onClick={async () => await signOutUser()}
             // but that would make the function run on the client
             "use server";

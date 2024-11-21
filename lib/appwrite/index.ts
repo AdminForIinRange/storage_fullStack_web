@@ -10,7 +10,7 @@ export const createSessionClient = async () => {
   // Step 1: Create a new client instance and configure it with endpoint and project ID
   const client = new Client()
     .setEndpoint(appwriteConfig.endpointUrl) // Set the API endpoint URL
-    .setProject(appwriteConfig.projectId);  // Set the project ID for the client
+    .setProject(appwriteConfig.projectId); // Set the project ID for the client
 
   // Step 2: Retrieve the session cookie named "appwrite-session"
   const session = (await cookies()).get("appwrite-session");
@@ -26,20 +26,19 @@ export const createSessionClient = async () => {
     // Getter for "account" service
     get account() {
       // Create and return an Account instance using the configured client
-      return new Account(client); 
+      return new Account(client);
     },
     // Getter for "databases" service
     get databases() {
       // Create and return a Databases instance using the configured client
-      return new Databases(client); 
+      return new Databases(client);
     },
   };
 };
 
-
 // Create a client with admin privileges
 
-// Yes, exactly! When referring to "admin" in this context, it’s about elevated system privileges 
+// Yes, exactly! When referring to "admin" in this context, it’s about elevated system privileges
 // rather than a "user" in the traditional sense.
 export const createAdminClient = async () => {
   const client = new Client()
