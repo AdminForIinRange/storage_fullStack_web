@@ -36,7 +36,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       {/* so the currentUser holds fullname, avatar, email, so by spreding it we can access all the values Without teh need of duplicating them */}
       <section className="flex h-full flex-1 flex-col">
         <MobileNavigation {...currentUser} />
-        <Header accountId="" userId="" />
+        <Header userId={currentUser.$id} accountId={currentUser.accountId} />
         <div className="main-content">{children}</div>
       </section>
       {/* <Toaster /> */}
